@@ -229,6 +229,9 @@ return_type Actuator::read(const rclcpp::Time & time, const rclcpp::Duration & p
     {
       error();
     }
+  } else if (impl_->get_state().id() == lifecycle_msgs::msg::State::PRIMARY_STATE_UNCONFIGURED)
+  {
+    return return_type::OK;
   }
   return result;
 }
@@ -246,6 +249,9 @@ return_type Actuator::write(const rclcpp::Time & time, const rclcpp::Duration & 
     {
       error();
     }
+  } else if (impl_->get_state().id() == lifecycle_msgs::msg::State::PRIMARY_STATE_UNCONFIGURED)
+  {
+    return return_type::OK;
   }
   return result;
 }
